@@ -8,6 +8,6 @@ pool:
 steps:
 
 - powershell: 'Write-Host "$(backends)"'
-  condition: eq($(Parameters.configureMultiRegion), true)
+  condition: eq('$(Parameters.configureMultiRegion)', true)
   displayName: 'PowerShell Script'
   enabled: true
