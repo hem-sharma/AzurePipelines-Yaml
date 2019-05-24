@@ -2,7 +2,7 @@ resources:
 - repo: self
 
 variables:
-  skip: $(Parameters.configureMultiRegion)
+  skip: $(Parameters.configureMultiRegion) and ($(Parameters.regions).list | length > 0)
 
 pool:
   name: Hosted VS2017
