@@ -2,7 +2,7 @@ resources:
 - repo: self
 
 variables:
-  skip: $(Parameters.regions).list | length = 0
+  skip: $(Parameters.regions) | length = 0
 
 pool:
   name: Hosted VS2017
