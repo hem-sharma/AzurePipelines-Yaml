@@ -25,13 +25,4 @@ stages:
       inputs:
         packageType: 'sdk'
         version: '2.2.105'
-   
-   - job: 'deploy'
-    condition: false
-    pool:
-      name: Hosted VS2017
-    steps:
-    - powershell: |
-       $timestamp=Get-Date -format "yyyy-MM-ddThh:mm:ss:fffZ"
-       Write-Host "##vso[task.setvariable variable=timestamp;]$timestamp"
-      displayName: 'PowerShell Script: Set current timespan'
+  
