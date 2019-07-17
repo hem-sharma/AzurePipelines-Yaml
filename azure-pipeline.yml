@@ -5,7 +5,7 @@ variables:
   azureSubscription: 'Azure.Nupaya'
   azureAppType: 'Web App on Windows'
   webAppName: 'api'
-  configureMultiRegion: false
+  configureMultiRegion: $(Parameters.configureMultiRegion)
 
 stages:
 
