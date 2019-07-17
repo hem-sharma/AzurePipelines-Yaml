@@ -5,7 +5,7 @@ variables:
   azureSubscription: 'Azure.Nupaya'
   azureAppType: 'Web App on Windows'
   webAppName: 'api'
-  configureMultiRegion: $(Parameters.configureMultiRegion)
+  configureMultiRegion: $(check)
 
 stages:
 
@@ -15,7 +15,7 @@ stages:
   jobs:
 
   - job: 'Setup'
-    condition: eq(variables.configureMultiRegion, 'True')
+    condition: eq(variables.configureMultiRegion, true)
     pool:
       name: Hosted VS2017
     steps:
