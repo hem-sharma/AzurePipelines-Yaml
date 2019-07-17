@@ -15,7 +15,7 @@ stages:
   jobs:
 
   - job: 'Setup'
-    condition: eq('True', variables.configureMultiRegion)
+    condition: eq(variables.configureMultiRegion, 'True')
     pool:
       name: Hosted VS2017
     steps:
