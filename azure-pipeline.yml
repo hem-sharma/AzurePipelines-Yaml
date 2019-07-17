@@ -5,15 +5,17 @@ variables:
   azureSubscription: 'Azure.Nupaya'
   azureAppType: 'Web App on Windows'
   webAppName: 'api'
+  check: $(check)
 
 stages:
 
 - stage: 'Prepare'
   displayName: 'Prepare'
-
+  
   jobs:
 
   - job: 'Setup'
+    condition: variables.check
     pool:
       name: Hosted VS2017
     steps:
