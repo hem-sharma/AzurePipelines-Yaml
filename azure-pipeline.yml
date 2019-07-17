@@ -15,7 +15,7 @@ stages:
   jobs:
 
   - job: 'Setup'
-    condition: and(eq(variables.configureMultiRegion, true), succeeded())
+    condition: true
     pool:
       name: Hosted VS2017
     steps:
@@ -31,6 +31,7 @@ stages:
   jobs:
 
   - job: 'deploy'
+    condition: false
     pool:
       name: Hosted VS2017
     steps:
