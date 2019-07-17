@@ -15,7 +15,7 @@ stages:
   jobs:
 
   - job: 'Setup'
-    condition: true
+    condition: $(Parameters.configureMultiRegion)
     pool:
       name: Hosted VS2017
     steps:
