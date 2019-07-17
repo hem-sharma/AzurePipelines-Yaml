@@ -1,16 +1,24 @@
-resources:
-- repo: self
-
 variables:
-  skip: $(Parameters.regions) | length = 0
+  buildConfiguration: 'Release'
+  buildPlatform: 'any cpu'
+  version: '0.2.0'
+  azureSubscription: 'Azure.Nupaya'
+  azureAppType: 'Web App on Windows'
+  webAppName: 'api'
 
-pool:
-  name: Hosted VS2017
-  demands: azureps
-  
-steps:
+stages:
 
-- powershell: 'Write-Host 0'
-  condition: eq(variables.skip, true)
-  displayName: 'PowerShell Script'
-  enabled: true
+- stage: 'Prepare'
+  displayName: 'Prepare'
+
+  jobs:
+
+  - job: 'Setup'
+    pool:
+      name: Hosted VS2017
+    steps:
+    - task: DotNetCoreInstaller@0
+      displayName: 'Install'
+      inputs:
+        packageType: 'sdk'
+        version: '2.2.105'
