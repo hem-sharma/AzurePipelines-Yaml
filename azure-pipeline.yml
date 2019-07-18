@@ -11,7 +11,7 @@ stages:
      name: Hosted VS2017
     steps:
     - powershell: |
-        $timestamp=$false
+        $timestamp=$true
         Write-Host $timestamp
         Write-Host "##vso[task.setvariable variable=timestamp;isOutput=true]$timestamp"
       displayName: 'mytask'
