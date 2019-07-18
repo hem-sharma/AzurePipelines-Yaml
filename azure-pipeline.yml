@@ -25,3 +25,4 @@ stages:
     steps:
     - powershell: |
         Write-Host "$(boolValue)"
+        
