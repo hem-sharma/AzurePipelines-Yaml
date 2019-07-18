@@ -19,5 +19,5 @@ stages:
     pool:
       name: Hosted VS2017
     steps:
-    - powershell: |
-         Write-Host $(test)
+    - script: |
+        ECHO $(test)
