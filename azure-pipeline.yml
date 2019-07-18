@@ -14,11 +14,14 @@ stages:
         $timestamp=$true
         Write-Host $timestamp
         Write-Host "##vso[task.setvariable variable=timestamp;]$timestamp"
+      displayName: 'mytask'
         
   - job: 'Process'
     dependsOn: Configure
+    variables:
+      boolValue: $[dependencies.Configure.outputs['mytask.timestamp']]
     pool:
       name: Hosted VS2017
     steps:
     - powershell: |
-        Write-Host "$(timestamp)"
+        Write-Host "$(boolValue)"
