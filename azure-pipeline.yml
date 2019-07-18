@@ -1,17 +1,27 @@
 variables:
   configureMultiRegion: $(check)
-stages:
-- stage: 'Prepare'
-  displayName: 'Prepare'
-  jobs:
-  - job: 'Setup'
-    pool:
-      name: Hosted VS2017
-    steps:
-    - task: DotNetCoreInstaller@0
-      condition: eq(variables.configureMultiRegion, true)
-      displayName: 'Install'
-      inputs:
-        packageType: 'sdk'
-        version: '2.2.105'
   
+stages:
+- stage: 'release'
+  displayName: 'Release'
+
+  jobs:
+  - job: 'Configure'
+    variables:
+      Build.SyncSources: false
+    pool:
+     name: Hosted VS2017
+    steps:
+    - script: |
+        ECHO ##vso[task.setvariable variable=test;]true
+        
+    - job: 'Process'
+      variables:
+        Build.SyncSources: false
+      pool:
+      name: Hosted VS2017
+      steps:
+      - powershell: |
+            Write-Host "oh yeah"
+        displayName: 'PowerShell Script: Set current timespan'
+        condition: eq('$(test)', true)
