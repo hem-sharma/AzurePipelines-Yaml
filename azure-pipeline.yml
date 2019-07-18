@@ -10,13 +10,13 @@ stages:
     pool:
      name: Hosted VS2017
     steps:
-    - script: |
-        ECHO ##vso[task.setvariable variable=test;]$true
+    - powershell: |
+        Write-Host ##vso[task.setvariable variable=test;]$true
         
   - job: 'Process'
     dependsOn: Configure
     pool:
       name: Hosted VS2017
     steps:
-    - script: |
-        ECHO $(test)
+    - powershell: |
+        Write-Host $(test)
