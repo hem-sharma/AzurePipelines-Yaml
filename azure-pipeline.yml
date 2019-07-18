@@ -14,6 +14,7 @@ stages:
         ECHO ##vso[task.setvariable variable=test;]$true
         
   - job: 'Process'
+    dependsOn: Configure
     pool:
       name: Hosted VS2017
     steps:
