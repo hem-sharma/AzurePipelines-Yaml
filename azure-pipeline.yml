@@ -21,5 +21,3 @@ stages:
     steps:
     - powershell: |
          Write-Host $(test)
-      displayName: 'PowerShell Script: Set current timespan'
-      
