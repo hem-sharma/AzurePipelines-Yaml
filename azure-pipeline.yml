@@ -3,7 +3,6 @@ variables:
 
 stages:
 - stage: 'Prepare'
-  condition: eq(variables.configureMultiRegion, true)
   displayName: 'Prepare'
   
   jobs:
