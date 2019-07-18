@@ -1,26 +1,18 @@
 variables:
-  buildConfiguration: 'Release'
-  buildPlatform: 'any cpu'
-  version: '0.2.0'
-  azureSubscription: 'Azure.Nupaya'
-  azureAppType: 'Web App on Windows'
-  webAppName: 'api'
   configureMultiRegion: $(check)
 
 stages:
-
 - stage: 'Prepare'
+  condition: eq(variables.configureMultiRegion, true)
   displayName: 'Prepare'
   
   jobs:
-
   - job: 'Setup'
-    condition: eq(variables.configureMultiRegion, 'True')
+    condition: eq(variables.configureMultiRegion, true)
     pool:
       name: Hosted VS2017
     steps:
     - task: DotNetCoreInstaller@0
-      
       displayName: 'Install'
       inputs:
         packageType: 'sdk'
