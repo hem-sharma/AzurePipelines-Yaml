@@ -15,13 +15,13 @@ stages:
     - script: |
         ECHO ##vso[task.setvariable variable=test;]true
         
-    - job: 'Process'
-      variables:
-        Build.SyncSources: false
-      pool:
+  - job: 'Process'
+    variables:
+      Build.SyncSources: false
+    pool:
       name: Hosted VS2017
-      steps:
-      - powershell: |
-            Write-Host "oh yeah"
-        displayName: 'PowerShell Script: Set current timespan'
-        condition: eq('$(test)', true)
+    steps:
+    - powershell: |
+         Write-Host "oh yeah"
+      displayName: 'PowerShell Script: Set current timespan'
+      condition: eq('$(test)', true)
