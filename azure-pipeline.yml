@@ -10,11 +10,9 @@ stages:
     condition: $(check)
     pool:
       name: Hosted VS2017
-    variables:
-      configureMultiRegiona: (variables.configureMultiRegion, true)
     steps:
     - task: DotNetCoreInstaller@0
-      condition: $
+      condition: (variables.configureMultiRegion, true)
       displayName: 'Install'
       inputs:
         packageType: 'sdk'
