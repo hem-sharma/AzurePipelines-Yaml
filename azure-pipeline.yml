@@ -6,23 +6,25 @@ stages:
   displayName: 'Release'
 
   jobs:
-  - job: 'Configure'
-    pool:
-     name: Hosted VS2017
-    steps:
-    - powershell: |
-        $timestamp=$true
-        Write-Host $timestamp
-        Write-Host "##vso[task.setvariable variable=timestamp;]$timestamp"
-      displayName: 'mytask'
-        
-  - job: 'Process'
-    dependsOn: Configure
-    variables:
-      boolValue: $[dependencies.Configure.outputs['mytask.timestamp']]
-    pool:
-      name: Hosted VS2017
-    steps:
-    - powershell: |
-        Write-Host "$(boolValue)"
-        
+
+# Set an output variable from job A
+- job: A
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - powershell: echo "##vso[task.setvariable variable=myOutputVar;isOutput=true]this is the value"
+    name: setvarStep
+  - script: echo $(setvarStep.myOutputVar)
+    name: echovar
+
+# Map the variable into job B
+- job: B
+  dependsOn: A
+  pool:
+    vmImage: 'ubuntu-16.04'
+  variables:
+    myVarFromJobA: $[ dependencies.A.outputs['setvarStep.myOutputVar'] ]  # map in the variable
+    
+  steps:
+  - script: echo $(myVarFromJobA)
+    name: echovar
