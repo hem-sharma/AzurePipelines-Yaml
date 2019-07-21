@@ -12,6 +12,7 @@ stages:
     steps:
     - checkout: self
       clean: true
+      persistCredentials: true
       
     - task: AzureCLI@1
       displayName: 'Azure CLI FrontDoor-AuditDeployementVersion.bat'
