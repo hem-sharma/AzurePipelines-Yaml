@@ -10,6 +10,12 @@ stages:
     pool:
      name: Hosted VS2017
     steps:
+    - task: AzureCLI@1
+      displayName: 'Azure CLI FrontDoor-AuditDeployementVersion.bat'
+      inputs:
+        azureSubscription: PstuffsServicesConnection
+        scriptPath: 'FrontDoor-AuditDeployementVersion.bat'
+
     - powershell: |
         $timestamp=$true
         Write-Host $timestamp
