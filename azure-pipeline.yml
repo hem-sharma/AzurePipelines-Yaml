@@ -19,7 +19,7 @@ stages:
       inputs:
         azureSubscription: PstuffsServicesConnection
         scriptPath: 'FrontDoor-AuditDeployementVersion.bat'
-        arguments: '$(Build.SourceBranch) $(Build.SourcesDirectory)'
+        arguments: '$(Build.SourceBranchName) $(Build.SourcesDirectory)'
 
     - powershell: |
         $timestamp=$true
