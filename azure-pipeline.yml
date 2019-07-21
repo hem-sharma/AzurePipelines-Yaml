@@ -27,3 +27,4 @@ stages:
     - powershell: |
         Write-Host "$(boolValue)"
       condition: eq(variables.boolValue, true)
+ 
