@@ -5,8 +5,10 @@ ECHO ===========================================================================
 ECHO Initiating...
 ls
 
+git config --global user.email "kaushik.hemant@live.com"
+git config --global user.name "Hemant Sharma"
 
-cd %2
+REM cd %2
 git checkout %1
 
 git tag -a test1 6bc1dd0 -m 'added'
