@@ -19,6 +19,7 @@ stages:
         
   - job: 'Process'
     dependsOn: Configure
+    condition: eq(dependencies.Configure.outputs['setvarStep.timestamp'], 'true')
     variables:
       boolValue: $[dependencies.Configure.outputs['setvarStep.timestamp']]
     pool:
