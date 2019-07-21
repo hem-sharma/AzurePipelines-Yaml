@@ -4,6 +4,9 @@ REM Arguments- %1: Root Directory, %2: Region, %3: Timestamp, %4: Environment, %
 ECHO ==============================================================================
 ECHO Initiating...
 
+
+git config --global user.email "kaushik.hemant@live.com"
+git config --global user.name "Hemant Sharma"
 git tag -a test 6bc1dd0 -m 'added'
 git push --follow-tags
 
