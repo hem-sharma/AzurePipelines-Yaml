@@ -11,7 +11,7 @@ git config --global user.name "Hemant Sharma"
 REM cd %2
 git checkout %1
 
-git tag -a test2 6bc1dd0 -m 'added'
+git tag -a test5 6bc1dd0 -m 'added'
 git push --follow-tags
 
 ECHO completed against !tag!.
