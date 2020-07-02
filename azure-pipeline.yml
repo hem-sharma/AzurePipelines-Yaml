@@ -10,7 +10,7 @@ variables:
 
 steps:
   - ${{if variables['mode']}}:
-      - ${{if eq(mode, 'sync')}}:
+      - ${{if eq(variables['mode'], 'sync')}}:
           - script: echo running sync apis
             displayName: "Sync api call"
 
