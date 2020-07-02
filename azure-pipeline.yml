@@ -5,8 +5,6 @@ pool:
   name: $(Parameters.PoolName)
   vmImage: "$(Parameters.vmImageName)"
 
-variables:
-
 steps:
   - ${{if Parameters.onboardingMode}}:
       - ${{if eq(Parameters.onboardingMode, sync)}}:
