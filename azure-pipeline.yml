@@ -9,7 +9,7 @@ variables:
   mode: $(Parameters.onboardingMode)
 
 steps:
-  - script: echo running 'variables['mode']'
+  - script: echo running 'variables.mode'
     displayName: "Sync api call"
 
   - ${{if eq(variables['mode'], 'minisync')}}:
