@@ -11,6 +11,9 @@ parameters:
     default: 'none'
 
 steps:
+  - script: echo running $(parameters.onboardingMode)
+    displayName: "Mini sync api call"
+
   - ${{ if ne(parameters.onboardingMode, 'none') }}:
       - ${{if eq(parameters.onboardingMode, 'sync')}}:
           - script: echo running sync apis
