@@ -1,40 +1,18 @@
+resources:
+  - repo: self
+
+pool:
+  name: $(Parameters.PoolName)
+  vmImage: "$(Parameters.vmImageName)"
+
 variables:
-  configureMultiRegion: $(check)
-  
-stages:
-- stage: 'release'
-  displayName: 'Release'
 
-  jobs:
-  - job: 'Configure'
-    pool:
-     name: Hosted VS2017
-    steps:
-    
-      
-    - task: AzureCLI@1
-      displayName: 'Azure CLI FrontDoor-AuditDeployementVersion.bat'
-      inputs:
-        azureSubscription: PstuffsServicesConnection
-        scriptPath: 'FrontDoor-AuditDeployementVersion.bat'
-        arguments: '$(Build.SourceBranchName) $(Build.SourcesDirectory)'
+steps:
+  - ${{if Parameters.onboardingMode}}:
+      - ${{if eq(Parameters.onboardingMode, sync)}}:
+          - script: echo running sync apis
+            displayName: "Sync api call"
 
-    - powershell: |
-        $timestamp=$true
-        Write-Host $timestamp
-        Write-Host "##vso[task.setvariable variable=timestamp;isOutput=true]$timestamp"
-      displayName: 'mytask'
-      name: setvarStep
-        
-  - job: 'Process'
-    dependsOn: Configure
-    condition: eq(dependencies.Configure.outputs['setvarStep.timestamp'], 'false')
-    variables:
-      boolValue: $[dependencies.Configure.outputs['setvarStep.timestamp']]
-    pool:
-      name: Hosted VS2017
-    steps:
-    - powershell: |
-        Write-Host "$(boolValue)"
-      condition: eq(variables.boolValue, false)
- 
+      - ${{if eq(Parameters.onboardingMode, minisync)}}:
+          - script: echo running mini sync apis
+            displayName: "Mini sync api call"
