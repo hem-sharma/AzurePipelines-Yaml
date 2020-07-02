@@ -8,7 +8,7 @@ pool:
 parameters:
   - name: mode
     type: string
-    default: "default"
+    default: "none"
     values:
       - "$(Parameters.onboardingMode)"
 
