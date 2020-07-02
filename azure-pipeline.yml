@@ -8,9 +8,9 @@ pool:
 parameters:
   - name: mode
     type: string
-    default: default
+    default: 'default'
     values:
-      - $(Parameters.onboardingMode)
+      - '$(Parameters.onboardingMode)'
 
 steps:
   - ${{if parameters.mode}}:
