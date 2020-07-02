@@ -5,12 +5,15 @@ pool:
   name: $(Parameters.PoolName)
   vmImage: "$(Parameters.vmImageName)"
 
+variables:
+  mode: $(Parameters.onboardingMode)
+
 steps:
-  - ${{if Parameters.onboardingMode}}:
-      - ${{if eq(Parameters.onboardingMode, sync)}}:
+  - ${{if mode}}:
+      - ${{if eq(mode, 'sync')}}:
           - script: echo running sync apis
             displayName: "Sync api call"
 
-      - ${{if eq(Parameters.onboardingMode, minisync)}}:
+      - ${{if eq(mode, 'minisync')}}:
           - script: echo running mini sync apis
             displayName: "Mini sync api call"
