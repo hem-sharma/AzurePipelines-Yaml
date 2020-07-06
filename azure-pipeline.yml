@@ -5,9 +5,40 @@ pool:
   name: $(Parameters.PoolName)
   vmImage: "$(Parameters.vmImageName)"
 
-variables:
-  test: "5>3 ? true : false"
-
 steps:
-  - script: echo running $(test)
-    displayName: "test"
+  - task: InvokeRESTAPI@1
+    displayName: "Invoke REST API: POST Extension"
+    inputs:
+      serviceConnection: "'$(Parameters.extensionServiceConnection)'"
+      headers: |
+        {
+          "Content-Type" : "application/json"
+        }
+      body: |
+        {
+          APIVersion : 'V1.0',
+          EnterpriseClientID : '$(Parameters.EnterpriseClientID)',
+          EnterpriseClientSecret : '$(Parameters.EnterpriseClientSecret)',
+          EnterpriseBaseUrl : '$(Parameters.EnterpriseBaseURL)',
+          AccountId :  '$(Parameters.EnterpriseAccountID)',
+          ExchangeTenantId : '$(Parameters.ExchangeTenantID)',
+          APIMURL : '$(Parameters.APIMURL)',
+          OcpKey : '$(Parameters.OcpKey)'
+        }
+      urlSuffix: "api/Function1"
+
+  - task: InvokeRESTAPI@1
+    displayName: "Invoke REST API: POST Notification API"
+    inputs:
+      serviceConnection: "'$(Parameters.apiServiceConnection)'"
+      headers: |
+        {
+          "Content-Type":"application/json"
+        }
+      body: |
+        {
+          AccountId : '$(Parameters.EnterpriseAccountID)',
+          ExchangeTenantId : '$(Parameters.ExchangeTenantID)',
+          ApiKey : '$(Parameters.TokenProviderAPIKey)'
+        }
+      urlSuffix: "api/Function1"
