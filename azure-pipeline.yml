@@ -23,7 +23,7 @@ steps:
           APIMURL : '$(Parameters.APIMURL)',
           OcpKey : '$(Parameters.OcpKey)'
         }
-      urlSuffix: "api/Function1"
+      urlSuffix: ""
 
   - task: InvokeRESTAPI@1
     displayName: "Invoke REST API: POST Notification API"
@@ -39,4 +39,4 @@ steps:
           ExchangeTenantId : '$(Parameters.ExchangeTenantID)',
           ApiKey : '$(Parameters.TokenProviderAPIKey)'
         }
-      urlSuffix: "api/Function1"
+      urlSuffix: ""
