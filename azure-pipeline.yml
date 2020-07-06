@@ -1,9 +1,7 @@
 resources:
   - repo: self
 
-pool:
-  name: $(Parameters.PoolName)
-  vmImage: "$(Parameters.vmImageName)"
+pool: server
 
 steps:
   - task: InvokeRESTAPI@1
