@@ -6,11 +6,8 @@ pool:
   vmImage: "$(Parameters.vmImageName)"
 
 variables:
-  mode: $(Parameters.onboardingMode)
-
-${{ if eq(variables['mode'], '$(Parameters.onboardingMode)') }}:
-  variables['mode']: "none"
+  test: "5>3 ? true : false"
 
 steps:
-  - script: echo running $(mode)
-    displayName: "Mini sync api call"
+  - script: echo running $(test)
+    displayName: "test"
